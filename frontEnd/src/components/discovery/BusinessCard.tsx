@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { DiscoveredBusiness, saveToCRM } from '../../services/api';
+import { DiscoveredBusiness, saveToCRM } from '../../services/api.ts';
 
 interface Props {
   business: DiscoveredBusiness;
