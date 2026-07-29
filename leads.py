@@ -11,7 +11,7 @@ import config
 from dedup import DedupStore
 from scorer import score_lead
 from drops import _get 
-from maps_scraper import scrape_google_maps
+from maps_scraper import scrape_google_maps, enrich_leads_batch
 from grader import grade_website_freshness
 from enrich import enrich_lead_record
 
@@ -184,7 +184,12 @@ def main():
                 global_stats["errored"] += 1
                 logger.error(f"Source {source_name} failed: {str(e)}")
 
+    # Sort high intent leads to the top
     all_leads.sort(key=lambda x: x["score"], reverse=True)
+
+    # Automated Contact Enrichment (Google Maps + Website Crawl)
+    logger.info("Starting automated contact enrichment...")
+    all_leads = asyncio.run(enrich_leads_batch(all_leads))
 
     with open(config.EXPORT_PATH, "w") as f:
         json.dump(all_leads, f, indent=2)

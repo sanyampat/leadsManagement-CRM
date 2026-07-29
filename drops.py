@@ -48,9 +48,13 @@ def _get(url, retries=3, method="GET", check_robots=True, delay_range=(0, 0), **
     session = requests.Session()
     session.headers.update({
         "User-Agent": ua,
-        "Accept": "application/json, text/html,application/xhtml+xml",
+        "Accept": "*/*",  # Wildcard prevents 406 Not Acceptable from API endpoints
         "Accept-Language": "en-US,en;q=0.5"
     })
+    
+    # Automatically format raw string Overpass queries for form-encoded POST delivery
+    if "data" in kwargs and isinstance(kwargs["data"], str):
+        kwargs["data"] = {"data": kwargs["data"]}
     
     for attempt in range(retries):
         try:
