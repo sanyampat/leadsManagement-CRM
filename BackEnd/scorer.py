@@ -1,5 +1,5 @@
 import logging
-import config
+import BackEnd.config as config
 
 logger = logging.getLogger(__name__)
 

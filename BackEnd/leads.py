@@ -7,13 +7,13 @@ import xml.etree.ElementTree as ET
 from datetime import datetime, timezone
 from concurrent.futures import ThreadPoolExecutor
 
-import config
-from dedup import DedupStore
-from scorer import score_lead
-from drops import _get 
-from maps_scraper import scrape_google_maps, enrich_leads_batch
-from grader import grade_website_freshness
-from enrich import enrich_lead_record
+import BackEnd.config as config
+from BackEnd.dedup import DedupStore
+from BackEnd.scorer import score_lead
+from BackEnd.drops import _get 
+from BackEnd.maps_scraper import scrape_google_maps, enrich_leads_batch
+from BackEnd.grader import grade_website_freshness
+from BackEnd.enrich import enrich_lead_record
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
 logger = logging.getLogger(__name__)

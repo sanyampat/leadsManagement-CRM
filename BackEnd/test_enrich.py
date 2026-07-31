@@ -1,5 +1,5 @@
 import pytest
-from enrich import clean_phone_number, enrich_lead_record
+from BackEnd.enrich import clean_phone_number, enrich_lead_record
 
 def test_clean_phone_number():
     assert clean_phone_number("9876543210") == "+919876543210"

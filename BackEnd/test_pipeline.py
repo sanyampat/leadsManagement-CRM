@@ -2,7 +2,7 @@ import pytest
 import os
 from concurrent.futures import ThreadPoolExecutor
 from dedup import DedupStore
-from scorer import score_lead
+from BackEnd.scorer import score_lead
 
 @pytest.fixture
 def temp_db():
